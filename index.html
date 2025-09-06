@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffc93c);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: confetti-fall linear infinite;
+            z-index: 1;
+        }
+        
+        .confetti:nth-child(odd) { background: #4ecdc4; }
+        .confetti:nth-child(3n) { background: #ffc93c; }
+        .confetti:nth-child(4n) { background: #96ceb4; }
+        .confetti:nth-child(5n) { background: #45b7d1; }
+        
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            opacity: 1;
+        }
+
+        @keyframes cardAppear {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .photo-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .photo-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            animation: photoGlow 3s ease-in-out infinite alternate;
+            overflow: hidden;
+        }
+        
+        @keyframes photoGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.6); }
+            100% { box-shadow: 0 0 30px rgba(78, 205, 196, 0.8); }
+        }
+        
+        .photo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .message-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #000;
+            background-clip: text;
+            -webkit-text-stroke: 1px solid;
+            filter: drop-shadow(2px 2px 0px #808080) 
+                    drop-shadow(-2px -2px 0px #808080) 
+                    drop-shadow(2px -2px 0px #808080) 
+                    drop-shadow(-2px 2px 0px #808080);
+            color: #000;
+        }
+        
+        .message-text.title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffc93c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            -webkit-text-stroke: 2px #444;
+            filter: drop-shadow(2px 2px 0px #696969) 
+                    drop-shadow(-2px -2px 0px #696969) 
+                    drop-shadow(2px -2px 0px #696969) 
+                    drop-shadow(-2px 2px 0px #696969);
+        }
+        
+        @keyframes textFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .continue-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+        
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes buttonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .slide-out {
+            animation: slideOut 0.8s ease forwards;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.8s ease forwards;
+        }
+        
+        @keyframes slideOut {
+            0% { transform: translateX(0) scale(1); opacity: 1; }
+            100% { transform: translateX(-100%) scale(0.8); opacity: 0; }
+        }
+        
+        @keyframes slideIn {
+            0% { transform: translateX(100%) scale(0.8); opacity: 0; }
+            100% { transform: translateX(0) scale(1); opacity: 1; }
+        }
+        
+        .final-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #ffc93c, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: finalGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes finalGlow {
+            0% { text-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+            100% { text-shadow: 0 0 30px rgba(78, 205, 196, 0.7); }
+        }
+        
+        .hearts {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b;
+            animation: floatingHearts 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatingHearts {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            75% { transform: translateY(-5px) rotate(-5deg); }
+        }
+        
+        .restart-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .copyright {
+            position: fixed;
+            bottom: 8px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: rgba(0,0,0,0.8);
+            font-family: 'Poppins', sans-serif;
+            z-index: 20;
+            
+        }
+        
+        .multi-photo-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-circle.verysmall {
+            width: 80px;
+            height: 80px;
+        }
+
+        .photo-circle.verysmall .photo-placeholder {
+            width: 66px;
+            height: 66px;
+        }
+
+        .photo-circle.small {
+            width: 100px;
+            height: 100px;
+        }
+
+        .photo-circle.small .photo-placeholder {
+            width: 80px;
+            height: 80px;
+        }
+
+        .photo-circle.medium {
+            width: 120px;
+            height: 120px;
+        }
+
+        .photo-circle.medium .photo-placeholder {
+            width: 100px;
+            height: 100px;
+        }
+
+        .photo-circle.large {
+            width: 160px;
+            height: 160px;
+        }
+
+        .photo-circle.large .photo-placeholder {
+            width: 140px;
+            height: 140px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="messageCard">
+            <div class="multi-photo-container" id="photoContainer">
+                <!-- <div class="photo-circle verysmall">
+                    <div class="photo-placeholder" id="photoPlaceholder">
+                        <img src="vale11.jpg" alt="Foto Valentina">
+                    </div>
+                </div> -->
+                <!-- <div class="photo-circle small">
+                    <div class="photo-placeholder" id="photoPlaceholder">
+                        <img src="vale1.jpg" alt="Foto Horta">
+                    </div>
+                </div> -->
+                <!-- <div class="photo-circle medium">
+                    <div class="photo-placeholder" id="photoPlaceholder">
+                        <img src="vale2.jpg" alt="Foto Ortis">
+                    </div>
+                </div> -->
+                <!-- <div class="photo-circle large">
+                    <div class="photo-placeholder" id="photoPlaceholder">
+                        <img src="vale3.jpg" alt="Foto VHO">
+                    </div>
+                </div> -->
+            </div>
+            
+            <div class="message-text title" id="messageText">¡Feliz Cumpleaños!</div>
+            
+            <button class="continue-btn" id="continueBtn" onclick="nextMessage()">Continuar</button>
+        </div>
+    </div>
+
+    <div class="hearts" style="top: 15%; left: 10%;">💖</div>
+    <div class="hearts" style="top: 25%; right: 15%; animation-delay: 1s;">✨</div>
+    <div class="hearts" style="bottom: 20%; left: 20%; animation-delay: 2s;">🎂</div>
+    <div class="hearts" style="bottom: 30%; right: 10%; animation-delay: 1.5s;">🎉</div>
+
+    <script>
+        // Mensajes para mostrar secuencialmente
+        const messages = [
+            /* 0 */{ text: "¡Feliz Cumpleaños!", isTitle: true },
+            /* 1 */{ text: "Hoy es un día muy especial...", isTitle: false },
+            /* 2 */{ text: "Cumpleaños la chaparra que más rabietas hace", isTitle: false },
+            /* 3 */{ text: "quien indiscutiblemente quiere estar bien pero al mismo tiempo no puede debido a muchas circunstancias", isTitle: false },
+            /* 4 */{ text: "de las cuales no se ve ni tantito frustrada, pero con gran motivación...", isTitle: false },
+            /* 5 */{ text: "Sin duda, una de las mujeres más guerras y frenteras en este planeta...", isTitle: false },
+            /* 6 */{ text: "Se merece todo lo mejor del mundo", isTitle: false },
+            /* 7 */{ text: "Sientas lo que sientas, no dejes que eso te controle", isTitle: false },
+            /* 8 */{ text: "¡Que todos sus deseos se hagan realidad!", isTitle: false },
+            /* 9 */{ text: "¡1 año más que da la vida para tener más experiencia!", isTitle: false },
+            /* 10 */{ text: "¡LA QUIERO MUCHO!", isTitle: false },
+            /* 11 */{ text: "Mujer, desde lo más profundo de mi ser...", isTitle: false },
+            /* 12 */{ text: "¡Feliz Cumpleaños! 🎉✨🎂", isTitle: true, isFinal: true }
+        ];
+        
+        // fotos principales solo para la primera card
+        const fotosPrincipales = ["vale11.jpg", "vale1.jpg", "vale2.jpg", "vale3.jpg"];
+        // fotos extra, pueden agregarse más
+        const fotosExtras = ["vale4.jpg", "vale5.jpg", "vale6.jpg", "vale7.jpg", "vale8.jpg", "vale9.jpg", "vale10.jpg", "vale.jpg"];
+
+        let currentMessage = 0;
+
+        function renderFotos(primerCard = false) {
+            const photoContainer = document.getElementById('photoContainer');
+            photoContainer.innerHTML = "";
+
+            if (primerCard) {
+                // Mostrar las 4 fotos principales en diferentes tamaños
+                fotosPrincipales.forEach((foto, i) => {
+                    let sizeClass = ["verysmall", "small", "medium", "large"][i % 4];
+                    photoContainer.innerHTML += `
+                        <div class="photo-circle ${sizeClass}">
+                            <div class="photo-placeholder">
+                                <img src="${foto}" alt="Foto ${i + 1}">
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                // Mostrar imagen específica según el mensaje actual
+                let todasLasFotos = [...fotosPrincipales, ...fotosExtras];
+                let fotoIndex = (currentMessage - 1) % todasLasFotos.length; // -1 porque empezamos desde mensaje 1
+                let fotoEspecifica = todasLasFotos[fotoIndex];
+                
+                photoContainer.innerHTML = `
+                    <div class="photo-circle large">
+                        <div class="photo-placeholder">
+                            <img src="${fotoEspecifica}" alt="Foto especial">
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        /*function renderFotos(primerCard = false) {
+          const photoContainer = document.getElementById('photoContainer');
+          photoContainer.innerHTML = "";
+
+          if (primerCard) {
+            // mostrar las 4 primeras
+            fotosPrincipales.forEach((foto, i) => {
+              let sizeClass = ["verysmall", "small", "medium", "large"][i % 12];
+              photoContainer.innerHTML += `
+                <div class="multi-photo-container" id="photoContainer">
+                    <div class="photo-circle ${sizeClass}" class="photo-placeholder">
+                        <div class="photo-placeholder" id="photoPlaceholder">
+                            <img src="${foto}">
+                        </div>
+                    </div>
+                </div>
+              `;
+            });
+          } else {
+            // mostrar 1 sola imagen aleatoria
+            let todasLasFotos = [...fotosPrincipales, ...fotosExtras];
+            let randomFoto = todasLasFotos[Math.floor(Math.random() * todasLasFotos.length)];
+            photoContainer.innerHTML = `
+                <div class="multi-photo-container" id="photoContainer">
+                    <div class="photo-circle medium" class="photo-placeholder">
+                        <div class="photo-placeholder" id="photoPlaceholder">
+                            <img src="${randomFoto}">
+                        </div>
+                    </div>
+                </div>
+            `;
+          }
+        }*/
+
+        function nextMessage() {
+          const card = document.getElementById('messageCard');
+          const messageText = document.getElementById('messageText');
+          const continueBtn = document.getElementById('continueBtn');
+
+          if (currentMessage < messages.length - 1) {
+            card.classList.add('slide-out');
+
+            setTimeout(() => {
+              currentMessage++;
+              const message = messages[currentMessage];
+
+              messageText.textContent = message.text;
+              messageText.className = message.isTitle ? 'message-text title' : 'message-text';
+
+              // renderizar imágenes según la card
+              if (currentMessage === 0) renderFotos(true);
+              else renderFotos(false);
+
+              if (message.isFinal) {
+                messageText.classList.add('final-message');
+                continueBtn.style.display = 'none';
+                const restartBtn = document.createElement('button');
+                restartBtn.textContent = 'Volver a empezar';
+                restartBtn.className = 'restart-btn';
+                restartBtn.onclick = restartMessages;
+                card.appendChild(restartBtn);
+              }
+
+              card.classList.remove('slide-out');
+              card.classList.add('slide-in');
+              setTimeout(() => card.classList.remove('slide-in'), 800);
+            }, 400);
+          }
+        }
+
+        function restartMessages() {
+          currentMessage = 0;
+          const messageText = document.getElementById('messageText');
+          const continueBtn = document.getElementById('continueBtn');
+
+          messageText.textContent = messages[0].text;
+          messageText.className = 'message-text title';
+          continueBtn.style.display = 'block';
+
+          renderFotos(true); // primera card → solo las principales
+
+          const restartBtn = document.querySelector('.restart-btn');
+          if (restartBtn) restartBtn.remove();
+        }
+
+        // inicializar primera card
+        renderFotos(true);
+        
+        // Crear confetti inicial
+        createConfetti();
+        
+        // Crear confetti periódicamente
+        setInterval(createConfetti, 8000);
+    </script>
+<footer class="copyright">
+    © 2025 Edwad Duque. 
+    <p>Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
