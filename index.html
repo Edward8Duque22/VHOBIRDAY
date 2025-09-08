@@ -15,8 +15,8 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
             background: linear-gradient(-45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffc93c);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
@@ -54,8 +54,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            padding: 20px;
+            min-height: 100vh;
+            padding: 15px;
             position: relative;
             z-index: 10;
         }
@@ -63,15 +63,16 @@
         .card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 40px;
+            border-radius: 20px;
+            padding: 30px 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
             text-align: center;
-            max-width: 600px;
-            width: 90%;
+            width: 100%;
+            max-width: 90vw;
             position: relative;
             border: 3px solid rgba(255, 255, 255, 0.3);
             opacity: 1;
+            margin: 10px 0;
         }
 
         @keyframes cardAppear {
@@ -86,13 +87,13 @@
         }
         
         .photo-container {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
         }
         
         .photo-circle {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             display: flex;
@@ -110,8 +111,8 @@
         }
         
         .photo-placeholder {
-            width: 100px;
-            height: 100px;
+            width: 66px;
+            height: 66px;
             border-radius: 50%;
             background: white;
             display: flex;
@@ -130,24 +131,26 @@
         
         .message-text {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            line-height: 1.4;
+            margin-bottom: 20px;
             -webkit-background-clip: text;
             -webkit-text-fill-color: #000;
             background-clip: text;
             -webkit-text-stroke: 1px solid;
-            filter: drop-shadow(2px 2px 0px #808080) 
-                    drop-shadow(-2px -2px 0px #808080) 
-                    drop-shadow(2px -2px 0px #808080) 
-                    drop-shadow(-2px 2px 0px #808080);
+            filter: drop-shadow(1px 1px 0px #808080) 
+                    drop-shadow(-1px -1px 0px #808080) 
+                    drop-shadow(1px -1px 0px #808080) 
+                    drop-shadow(-1px 1px 0px #808080);
             color: #000;
+            word-wrap: break-word;
+            hyphens: auto;
         }
         
         .message-text.title {
             font-family: 'Poppins', sans-serif;
-            font-size: 48px;
+            font-size: 28px;
             font-weight: 900;
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffc93c);
             -webkit-background-clip: text;
@@ -175,9 +178,9 @@
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             color: white;
             border: none;
-            padding: 15px 40px;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -185,6 +188,8 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             animation: buttonPulse 2s ease-in-out infinite;
+            width: auto;
+            min-width: 140px;
         }
         
         .continue-btn:hover {
@@ -217,7 +222,7 @@
         
         .final-message {
             font-family: 'Dancing Script', cursive;
-            font-size: 36px;
+            font-size: 24px;
             font-weight: 700;
             background: linear-gradient(45deg, #ff6b6b, #ffc93c, #4ecdc4);
             -webkit-background-clip: text;
@@ -233,7 +238,7 @@
         
         .hearts {
             position: absolute;
-            font-size: 20px;
+            font-size: 16px;
             color: #ff6b6b;
             animation: floatingHearts 3s ease-in-out infinite;
         }
@@ -248,14 +253,15 @@
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             color: white;
             border: none;
-            padding: 10px 25px;
+            padding: 8px 20px;
             border-radius: 25px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 15px;
             transition: all 0.3s ease;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
+        
         .restart-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 30px rgba(0,0,0,0.3);
@@ -263,64 +269,473 @@
 
         .copyright {
             position: fixed;
-            bottom: 8px;
+            bottom: 5px;
             left: 0;
             width: 100%;
             text-align: center;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: bold;
             color: rgba(0,0,0,0.8);
             font-family: 'Poppins', sans-serif;
             z-index: 20;
-            
+            padding: 0 10px;
+        }
+        
+        .copyright p {
+            margin: 0;
+            line-height: 1.2;
         }
         
         .multi-photo-container {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
+            margin-bottom: 20px;
         }
 
         .photo-circle.verysmall {
+            width: 60px;
+            height: 60px;
+        }
+
+        .photo-circle.verysmall .photo-placeholder {
+            width: 50px;
+            height: 50px;
+        }
+
+        .photo-circle.small {
             width: 80px;
             height: 80px;
         }
 
-        .photo-circle.verysmall .photo-placeholder {
+        .photo-circle.small .photo-placeholder {
             width: 66px;
             height: 66px;
         }
 
-        .photo-circle.small {
+        .photo-circle.medium {
             width: 100px;
             height: 100px;
         }
 
-        .photo-circle.small .photo-placeholder {
-            width: 80px;
-            height: 80px;
+        .photo-circle.medium .photo-placeholder {
+            width: 84px;
+            height: 84px;
         }
 
-        .photo-circle.medium {
+        .photo-circle.large {
             width: 120px;
             height: 120px;
         }
 
-        .photo-circle.medium .photo-placeholder {
-            width: 100px;
-            height: 100px;
-        }
-
-        .photo-circle.large {
-            width: 160px;
-            height: 160px;
-        }
-
         .photo-circle.large .photo-placeholder {
-            width: 140px;
-            height: 140px;
+            width: 104px;
+            height: 104px;
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        
+        /* Tablets pequeñas y móviles grandes (768px y abajo) */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 25px 15px;
+                border-radius: 15px;
+                max-width: 95vw;
+            }
+            
+            .message-text {
+                font-size: 16px;
+                line-height: 1.3;
+                margin-bottom: 18px;
+            }
+            
+            .message-text.title {
+                font-size: 24px;
+            }
+            
+            .final-message {
+                font-size: 20px;
+            }
+            
+            .continue-btn {
+                padding: 10px 25px;
+                font-size: 15px;
+                min-width: 120px;
+            }
+            
+            .photo-circle.verysmall {
+                width: 50px;
+                height: 50px;
+            }
+
+            .photo-circle.verysmall .photo-placeholder {
+                width: 40px;
+                height: 40px;
+            }
+
+            .photo-circle.small {
+                width: 65px;
+                height: 65px;
+            }
+
+            .photo-circle.small .photo-placeholder {
+                width: 55px;
+                height: 55px;
+            }
+
+            .photo-circle.medium {
+                width: 80px;
+                height: 80px;
+            }
+
+            .photo-circle.medium .photo-placeholder {
+                width: 66px;
+                height: 66px;
+            }
+
+            .photo-circle.large {
+                width: 100px;
+                height: 100px;
+            }
+
+            .photo-circle.large .photo-placeholder {
+                width: 84px;
+                height: 84px;
+            }
+            
+            .multi-photo-container {
+                gap: 6px;
+                margin-bottom: 15px;
+            }
+            
+            .hearts {
+                font-size: 14px;
+            }
+            
+            .copyright {
+                font-size: 9px;
+                bottom: 3px;
+            }
+        }
+        
+        /* Móviles (480px y abajo) */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 8px;
+                justify-content: flex-start;
+                padding-top: 20px;
+            }
+            
+            .card {
+                padding: 20px 12px;
+                border-radius: 12px;
+                max-width: 98vw;
+                margin: 5px 0;
+            }
+            
+            .message-text {
+                font-size: 14px;
+                line-height: 1.2;
+                margin-bottom: 15px;
+                word-break: break-word;
+            }
+            
+            .message-text.title {
+                font-size: 20px;
+                line-height: 1.1;
+            }
+            
+            .final-message {
+                font-size: 18px;
+            }
+            
+            .continue-btn {
+                padding: 8px 20px;
+                font-size: 14px;
+                min-width: 100px;
+                letter-spacing: 0.5px;
+            }
+            
+            .restart-btn {
+                padding: 6px 16px;
+                font-size: 12px;
+                margin-top: 10px;
+            }
+            
+            .photo-circle.verysmall {
+                width: 40px;
+                height: 40px;
+            }
+
+            .photo-circle.verysmall .photo-placeholder {
+                width: 32px;
+                height: 32px;
+            }
+
+            .photo-circle.small {
+                width: 50px;
+                height: 50px;
+            }
+
+            .photo-circle.small .photo-placeholder {
+                width: 42px;
+                height: 42px;
+            }
+
+            .photo-circle.medium {
+                width: 65px;
+                height: 65px;
+            }
+
+            .photo-circle.medium .photo-placeholder {
+                width: 55px;
+                height: 55px;
+            }
+
+            .photo-circle.large {
+                width: 80px;
+                height: 80px;
+            }
+
+            .photo-circle.large .photo-placeholder {
+                width: 66px;
+                height: 66px;
+            }
+            
+            .multi-photo-container {
+                gap: 4px;
+                margin-bottom: 12px;
+            }
+            
+            .hearts {
+                font-size: 12px;
+            }
+            
+            .copyright {
+                font-size: 8px;
+                bottom: 2px;
+                line-height: 1.1;
+            }
+            
+            .confetti {
+                width: 6px;
+                height: 6px;
+            }
+        }
+        
+        /* Móviles muy pequeños (360px y abajo) */
+        @media screen and (max-width: 360px) {
+            .container {
+                padding: 5px;
+                padding-top: 15px;
+            }
+            
+            .card {
+                padding: 15px 8px;
+                border-radius: 10px;
+                max-width: 99vw;
+            }
+            
+            .message-text {
+                font-size: 12px;
+                margin-bottom: 12px;
+            }
+            
+            .message-text.title {
+                font-size: 18px;
+            }
+            
+            .final-message {
+                font-size: 16px;
+            }
+            
+            .continue-btn {
+                padding: 6px 16px;
+                font-size: 12px;
+                min-width: 90px;
+            }
+            
+            .restart-btn {
+                padding: 5px 12px;
+                font-size: 11px;
+            }
+            
+            .photo-circle.verysmall {
+                width: 35px;
+                height: 35px;
+            }
+
+            .photo-circle.verysmall .photo-placeholder {
+                width: 28px;
+                height: 28px;
+            }
+
+            .photo-circle.small {
+                width: 45px;
+                height: 45px;
+            }
+
+            .photo-circle.small .photo-placeholder {
+                width: 38px;
+                height: 38px;
+            }
+
+            .photo-circle.medium {
+                width: 55px;
+                height: 55px;
+            }
+
+            .photo-circle.medium .photo-placeholder {
+                width: 46px;
+                height: 46px;
+            }
+
+            .photo-circle.large {
+                width: 70px;
+                height: 70px;
+            }
+
+            .photo-circle.large .photo-placeholder {
+                width: 58px;
+                height: 58px;
+            }
+            
+            .multi-photo-container {
+                gap: 3px;
+                margin-bottom: 10px;
+            }
+            
+            .hearts {
+                font-size: 10px;
+            }
+            
+            .copyright {
+                font-size: 7px;
+                bottom: 1px;
+            }
+        }
+        
+        /* Pantallas grandes (1200px y arriba) */
+        @media screen and (min-width: 1200px) {
+            .card {
+                padding: 50px 40px;
+                border-radius: 35px;
+                max-width: 700px;
+            }
+            
+            .message-text {
+                font-size: 22px;
+                margin-bottom: 25px;
+            }
+            
+            .message-text.title {
+                font-size: 36px;
+            }
+            
+            .final-message {
+                font-size: 30px;
+            }
+            
+            .continue-btn {
+                padding: 15px 40px;
+                font-size: 18px;
+                min-width: 160px;
+            }
+            
+            .photo-circle.verysmall {
+                width: 70px;
+                height: 70px;
+            }
+
+            .photo-circle.verysmall .photo-placeholder {
+                width: 58px;
+                height: 58px;
+            }
+
+            .photo-circle.small {
+                width: 90px;
+                height: 90px;
+            }
+
+            .photo-circle.small .photo-placeholder {
+                width: 74px;
+                height: 74px;
+            }
+
+            .photo-circle.medium {
+                width: 120px;
+                height: 120px;
+            }
+
+            .photo-circle.medium .photo-placeholder {
+                width: 100px;
+                height: 100px;
+            }
+
+            .photo-circle.large {
+                width: 150px;
+                height: 150px;
+            }
+
+            .photo-circle.large .photo-placeholder {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .multi-photo-container {
+                gap: 12px;
+                margin-bottom: 30px;
+            }
+            
+            .hearts {
+                font-size: 22px;
+            }
+            
+            .copyright {
+                font-size: 12px;
+            }
+        }
+
+        /* Orientación landscape en móviles */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            body {
+                overflow-y: auto;
+            }
+            
+            .container {
+                min-height: auto;
+                padding: 10px 5px;
+                justify-content: flex-start;
+            }
+            
+            .card {
+                padding: 15px 10px;
+                margin: 5px 0;
+            }
+            
+            .message-text {
+                margin-bottom: 10px;
+            }
+            
+            .multi-photo-container {
+                margin-bottom: 8px;
+            }
+            
+            .copyright {
+                position: relative;
+                margin-top: 10px;
+                padding: 5px;
+            }
+            
+            .hearts {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -328,26 +743,7 @@
     <div class="container">
         <div class="card" id="messageCard">
             <div class="multi-photo-container" id="photoContainer">
-                <!-- <div class="photo-circle verysmall">
-                    <div class="photo-placeholder" id="photoPlaceholder">
-                        <img src="vale11.jpg" alt="Foto Valentina">
-                    </div>
-                </div> -->
-                <!-- <div class="photo-circle small">
-                    <div class="photo-placeholder" id="photoPlaceholder">
-                        <img src="vale1.jpg" alt="Foto Horta">
-                    </div>
-                </div> -->
-                <!-- <div class="photo-circle medium">
-                    <div class="photo-placeholder" id="photoPlaceholder">
-                        <img src="vale2.jpg" alt="Foto Ortis">
-                    </div>
-                </div> -->
-                <!-- <div class="photo-circle large">
-                    <div class="photo-placeholder" id="photoPlaceholder">
-                        <img src="vale3.jpg" alt="Foto VHO">
-                    </div>
-                </div> -->
+                <!-- Las fotos se cargarán dinámicamente -->
             </div>
             
             <div class="message-text title" id="messageText">¡Feliz Cumpleaños!</div>
@@ -362,21 +758,39 @@
     <div class="hearts" style="bottom: 30%; right: 10%; animation-delay: 1.5s;">🎉</div>
 
     <script>
+        // Crear confetti
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#ffc93c', '#96ceb4', '#45b7d1'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
         // Mensajes para mostrar secuencialmente
         const messages = [
-            /* 0 */{ text: "¡Feliz Cumpleaños!", isTitle: true },
-            /* 1 */{ text: "Hoy es un día muy especial...", isTitle: false },
-            /* 2 */{ text: "Cumpleaños la chaparra que más rabietas hace", isTitle: false },
-            /* 3 */{ text: "quien indiscutiblemente quiere estar bien pero al mismo tiempo no puede debido a muchas circunstancias", isTitle: false },
-            /* 4 */{ text: "de las cuales no se ve ni tantito frustrada, pero con gran motivación...", isTitle: false },
-            /* 5 */{ text: "Sin duda, una de las mujeres más guerras y frenteras en este planeta...", isTitle: false },
-            /* 6 */{ text: "Se merece todo lo mejor del mundo", isTitle: false },
-            /* 7 */{ text: "Sientas lo que sientas, no dejes que eso te controle", isTitle: false },
-            /* 8 */{ text: "¡Que todos sus deseos se hagan realidad!", isTitle: false },
-            /* 9 */{ text: "¡1 año más que da la vida para tener más experiencia!", isTitle: false },
-            /* 10 */{ text: "¡LA QUIERO MUCHO!", isTitle: false },
-            /* 11 */{ text: "Mujer, desde lo más profundo de mi ser...", isTitle: false },
-            /* 12 */{ text: "¡Feliz Cumpleaños! 🎉✨🎂", isTitle: true, isFinal: true }
+            { text: "¡Feliz Cumpleaños!", isTitle: true },
+            { text: "Hoy es un día muy especial...", isTitle: false },
+            { text: "Cumpleaños la chaparra que más rabietas hace", isTitle: false },
+            { text: "quien indiscutiblemente quiere estar bien pero al mismo tiempo no puede debido a muchas circunstancias", isTitle: false },
+            { text: "de las cuales no se ve ni tantito frustrada, pero con gran motivación...", isTitle: false },
+            { text: "Sin duda, una de las mujeres más guerras y frenteras en este planeta...", isTitle: false },
+            { text: "Se merece todo lo mejor del mundo", isTitle: false },
+            { text: "Sientas lo que sientas, no dejes que eso te controle", isTitle: false },
+            { text: "¡Que todos sus deseos se hagan realidad!", isTitle: false },
+            { text: "¡1 año más que da la vida para tener más experiencia!", isTitle: false },
+            { text: "¡LA QUIERO MUCHO!", isTitle: false },
+            { text: "Mujer, desde lo más profundo de mi ser...", isTitle: false },
+            { text: "¡Feliz Cumpleaños! 🎉✨🎂", isTitle: true, isFinal: true }
         ];
         
         // fotos principales solo para la primera card
@@ -405,7 +819,7 @@
             } else {
                 // Mostrar imagen específica según el mensaje actual
                 let todasLasFotos = [...fotosPrincipales, ...fotosExtras];
-                let fotoIndex = (currentMessage - 1) % todasLasFotos.length; // -1 porque empezamos desde mensaje 1
+                let fotoIndex = (currentMessage - 1) % todasLasFotos.length;
                 let fotoEspecifica = todasLasFotos[fotoIndex];
                 
                 photoContainer.innerHTML = `
@@ -418,92 +832,58 @@
             }
         }
 
-        /*function renderFotos(primerCard = false) {
-          const photoContainer = document.getElementById('photoContainer');
-          photoContainer.innerHTML = "";
-
-          if (primerCard) {
-            // mostrar las 4 primeras
-            fotosPrincipales.forEach((foto, i) => {
-              let sizeClass = ["verysmall", "small", "medium", "large"][i % 12];
-              photoContainer.innerHTML += `
-                <div class="multi-photo-container" id="photoContainer">
-                    <div class="photo-circle ${sizeClass}" class="photo-placeholder">
-                        <div class="photo-placeholder" id="photoPlaceholder">
-                            <img src="${foto}">
-                        </div>
-                    </div>
-                </div>
-              `;
-            });
-          } else {
-            // mostrar 1 sola imagen aleatoria
-            let todasLasFotos = [...fotosPrincipales, ...fotosExtras];
-            let randomFoto = todasLasFotos[Math.floor(Math.random() * todasLasFotos.length)];
-            photoContainer.innerHTML = `
-                <div class="multi-photo-container" id="photoContainer">
-                    <div class="photo-circle medium" class="photo-placeholder">
-                        <div class="photo-placeholder" id="photoPlaceholder">
-                            <img src="${randomFoto}">
-                        </div>
-                    </div>
-                </div>
-            `;
-          }
-        }*/
-
         function nextMessage() {
-          const card = document.getElementById('messageCard');
-          const messageText = document.getElementById('messageText');
-          const continueBtn = document.getElementById('continueBtn');
+            const card = document.getElementById('messageCard');
+            const messageText = document.getElementById('messageText');
+            const continueBtn = document.getElementById('continueBtn');
 
-          if (currentMessage < messages.length - 1) {
-            card.classList.add('slide-out');
+            if (currentMessage < messages.length - 1) {
+                card.classList.add('slide-out');
 
-            setTimeout(() => {
-              currentMessage++;
-              const message = messages[currentMessage];
+                setTimeout(() => {
+                    currentMessage++;
+                    const message = messages[currentMessage];
 
-              messageText.textContent = message.text;
-              messageText.className = message.isTitle ? 'message-text title' : 'message-text';
+                    messageText.textContent = message.text;
+                    messageText.className = message.isTitle ? 'message-text title' : 'message-text';
 
-              // renderizar imágenes según la card
-              if (currentMessage === 0) renderFotos(true);
-              else renderFotos(false);
+                    // renderizar imágenes según la card
+                    if (currentMessage === 0) renderFotos(true);
+                    else renderFotos(false);
 
-              if (message.isFinal) {
-                messageText.classList.add('final-message');
-                continueBtn.style.display = 'none';
-                const restartBtn = document.createElement('button');
-                restartBtn.textContent = 'Volver a empezar';
-                restartBtn.className = 'restart-btn';
-                restartBtn.onclick = restartMessages;
-                card.appendChild(restartBtn);
-              }
+                    if (message.isFinal) {
+                        messageText.classList.add('final-message');
+                        continueBtn.style.display = 'none';
+                        const restartBtn = document.createElement('button');
+                        restartBtn.textContent = 'Volver a empezar';
+                        restartBtn.className = 'restart-btn';
+                        restartBtn.onclick = restartMessages;
+                        card.appendChild(restartBtn);
+                    }
 
-              card.classList.remove('slide-out');
-              card.classList.add('slide-in');
-              setTimeout(() => card.classList.remove('slide-in'), 800);
-            }, 400);
-          }
+                    card.classList.remove('slide-out');
+                    card.classList.add('slide-in');
+                    setTimeout(() => card.classList.remove('slide-in'), 800);
+                }, 400);
+            }
         }
 
         function restartMessages() {
-          currentMessage = 0;
-          const messageText = document.getElementById('messageText');
-          const continueBtn = document.getElementById('continueBtn');
+            currentMessage = 0;
+            const messageText = document.getElementById('messageText');
+            const continueBtn = document.getElementById('continueBtn');
 
-          messageText.textContent = messages[0].text;
-          messageText.className = 'message-text title';
-          continueBtn.style.display = 'block';
+            messageText.textContent = messages[0].text;
+            messageText.className = 'message-text title';
+            continueBtn.style.display = 'block';
 
-          renderFotos(true); // primera card → solo las principales
+            renderFotos(true);
 
-          const restartBtn = document.querySelector('.restart-btn');
-          if (restartBtn) restartBtn.remove();
+            const restartBtn = document.querySelector('.restart-btn');
+            if (restartBtn) restartBtn.remove();
         }
 
-        // inicializar primera card
+        // Inicializar primera card
         renderFotos(true);
         
         // Crear confetti inicial
@@ -512,12 +892,10 @@
         // Crear confetti periódicamente
         setInterval(createConfetti, 8000);
     </script>
-<footer class="copyright">
-    © 2025 José Dorantes & Edwad Duque. 
-    <p>Todos los derechos reservados.</p>
-</footer>
-
+    
+    <footer class="copyright">
+        © 2025 Edwad Duque. 
+        <p>Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
-
-
